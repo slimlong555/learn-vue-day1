@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VueJS Course</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+  </head>
+
+  <body>
+    <div id="app" v-cloak>
+      <p>{{ fullName }}</p>
+      <p><a v-bind:href="url" target="_blank">BaiDu</a></p>
+      <!-- v-bind指令添加到属性，可以将值作为表达式进行处理。,也可以只用 ： -->
+      <p v-html="raw_url"></p>
+      <p>{{ typeof age }}</p>
+      <hr />
+
+      <label>firstName</label>
+      <input type="text" v-model.lazy.trim="firstName" />
+      <!-- 从值中删除过多的空白 -->
+
+      <label>middleName</label>
+      <input type="text" @keyup.enter="updateMiddleName" />
+
+      <label>lastName</label>
+      <input
+        type="text"
+        :value="lastName"
+        @input.prevent="updateLastName('Last name event triggered!',$event)"
+      />
+      <label>Age</label>
+      <input type="number" v-model.number="age" />
+
+      <button type="button" @click="increment">Increment</button>
+      <button type="button" @click.ctrl="age--">Decrement</button>
+      <!-- v-on:可以用@代替 -->
+    </div>
+    <!-- <div id="app2">{{ firstName }} {{lastName}}</div> -->
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
